@@ -1,0 +1,30 @@
+# IDE working files
+*.iws
+*.ipr
+*.iml
+.idea/
+.settings
+.project
+.classpath
+.metadata/
+
+# Build directories
+target/
+out/
+.eclipse-pmd
+node_modules/
+
+# Build and test files
+*.log*
+*.lck
+
+# OS generated files
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+#log
+*.log
+/target
+
