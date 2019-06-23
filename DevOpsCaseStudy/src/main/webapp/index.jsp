@@ -1,4 +1,7 @@
 <html>
+<head>
+	<title>DevOps Case Study - Calculator</title>
+</head>
 <body>
 	<h2>Hello World!</h2>
 <body>

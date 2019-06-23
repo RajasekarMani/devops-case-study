@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dep-devops-case-study
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: app-devops-case-study
+    spec:
+      containers:
+      - name: app-devops-case-study-container
+        image: rmani1/app:latest
+        ports:
+        - containerPort: 8080
