@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tcs</groupId>
 	<artifactId>DevOpsCaseStudy</artifactId>
@@ -35,6 +33,7 @@
 	</dependencies>
 	<build>
 		<finalName>DevOpsCaseStudy</finalName>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -52,13 +51,38 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.14</version>
+				<configuration>
+					<!-- skips surefire tests without skipping failsafe tests. Property value seems to magically default to false -->
+					<skipTests>${skip.surefire.tests}</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.0.2</version>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.20</version>
+				<configuration>
+					<forkCount>1</forkCount>
+					<reuseForks>true</reuseForks>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+					<runOrder>alphabetical</runOrder>
+					<argLine>-Duser.language=en</argLine>
+					<argLine>-Xmx512m</argLine>
+					<argLine>-XX:MaxPermSize=256m</argLine>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+					<systemPropertyVariables>
+						<app.url>${app.url}</app.url>
+					</systemPropertyVariables>
+				</configuration>
 				<executions>
 					<execution>
+						<id>failsafe-integration-test</id>
+						<phase>integration-test</phase>
 						<goals>
-							<goal>test-jar</goal>
+							<goal>integration-test</goal>
 						</goals>
 					</execution>
 				</executions>
