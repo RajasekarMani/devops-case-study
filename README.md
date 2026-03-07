@@ -91,3 +91,5 @@ INSTALL_MONITORING_AGENT
 -------------------
 curl -sSO https://dl.google.com/cloudagents/install-monitoring-agent.sh
 sudo bash install-monitoring-agent.sh
+
+EOF
